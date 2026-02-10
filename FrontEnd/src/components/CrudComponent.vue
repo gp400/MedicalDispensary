@@ -173,6 +173,8 @@
 
         const invalidHeaders: string[] = ['actions']
 
+        const showExpandOriginal = showExpand.value;
+
         isPrint.value = true;
         itemsPerPage.value = 0;
         hideDefaultFooter.value = true;
@@ -209,7 +211,7 @@
         isPrint.value = false;
         itemsPerPage.value = 10;
         hideDefaultFooter.value = false;
-        showExpand.value = true
+        showExpand.value = showExpandOriginal
         headers.value = props.headers
     };
 </script>
