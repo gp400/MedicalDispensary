@@ -139,8 +139,7 @@
         setInitialDate: Function;
         setEndDate: Function;
     }>();
-
-
+    
     const search = ref<string>("");
     const dialog = ref<boolean>(false);
     const isPrint = ref<boolean>(false);
@@ -196,6 +195,7 @@
 
             const headerText = `Reporte de ${ props.title }`;
 
+            pdf.setFont("helvetica", "bold");
             pdf.setFontSize(18);
             pdf.setTextColor(40);
 
