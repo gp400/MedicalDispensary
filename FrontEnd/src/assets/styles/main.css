@@ -1,3 +1,7 @@
 .w-90 {
     width: 90%;
 }
+
+.v-data-table thead th {
+  font-weight: bold !important;
+}

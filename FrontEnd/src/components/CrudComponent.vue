@@ -5,13 +5,10 @@
     <v-col cols="6">
       <v-row>
         <v-col cols="12">
-          <v-btn color="primary" class="text-none" @click="dialog = true">{{
-            btnText
-          }}</v-btn>
+          <v-btn color="primary" class="text-none" @click="dialog = true">{{btnText}}</v-btn>
         </v-col>
         <v-col cols="12" v-if="showPrint">
-          <v-btn color="green" class="text-none" @click="downloadPdf"
-            >Imprimir reporte</v-btn
+          <v-btn color="green" class="text-none" @click="downloadPdf">Imprimir reporte</v-btn
           >
         </v-col>
       </v-row>
@@ -181,8 +178,6 @@
         hideDefaultFooter.value = true;
         showExpand.value = false
         headers.value = props.headers.filter(header => !invalidHeaders.includes(header.key!.toLocaleLowerCase()));
-
-        // await html2pdf().set({ margin: 5 }).from(pdfContent.value!).save(`Reporte ${props.title}.pdf`);
 
         const opt: Html2PdfOptions = {
           margin:       [20,10,10,10],
