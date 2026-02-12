@@ -41,7 +41,7 @@
                     <v-text-field
                         v-model="formData.Identification"
                         label="Cédula (Sin guiones)"
-                        :rules="[...requiredRule, ...numberRule, ...maxLengthRule(indentificationCounter)]"
+                        :rules="[...requiredRule, ...numberRule, ...maxLengthRule(indentificationCounter), ...identificacionRule]"
                         @input="(e: InputEvent) => filterNumbers(e, 'Identification')"
                         :counter="indentificationCounter"
                     />
@@ -82,7 +82,7 @@
     import { Doctor } from '@/dto/Doctor';
     import { DoctorBatchWork } from '@/enum/doctorBatchWork';
     import { parseDoctorBatchWork } from '@/utils/parseDoctorBatchWork';
-    import { maxLengthRule, numberRule, requiredRule } from '@/utils/Validations';
+    import { maxLengthRule, numberRule, requiredRule, identificacionRule } from '@/utils/Validations';
     import { AxiosError } from 'axios';
     import { onMounted, ref } from 'vue';
     import { DataTableHeader } from 'vuetify';

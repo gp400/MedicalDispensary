@@ -50,24 +50,26 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="12" v-if="setInitialDate || setEndDate">
+        <v-col cols="12" v-if="props.setInitialDate || props.setEndDate">
           <v-row justify="end">
-            <v-col cols="12" md="6" v-if="setInitialDate">
+            <v-col cols="12" md="6" v-if="props.setInitialDate">
               <v-text-field
                 type="date"
                 label="Fecha Inicio"
                 @input="(event: InputEvent) => setInitialDate((event.target as HTMLInputElement).value)"
                 @click:clear="() => setInitialDate(null)"
+                :max="endDate"
                 clearable
                 hide-details
               />
             </v-col>
-            <v-col cols="12" md="6" v-if="setEndDate">
+            <v-col cols="12" md="6" v-if="props.setEndDate">
               <v-text-field
                 type="date"
                 label="Fecha Fin"
                 @input="(event: InputEvent) => setEndDate((event.target as HTMLInputElement).value)"
                 @click:clear="() => setEndDate(null)"
+                :min="initialDate"
                 clearable
                 hide-details
               />
@@ -144,6 +146,8 @@
     const dialog = ref<boolean>(false);
     const isPrint = ref<boolean>(false);
     const itemsPerPage = ref<number>(10);
+    const initialDate = ref<Date | null>(null);
+    const endDate = ref<Date | null>(null);
     const hideDefaultFooter = ref<boolean>(false);
     const showExpand = ref<boolean>(props.showExpand);
     const pdfContent = ref<HTMLDivElement | null>(null);
@@ -167,6 +171,17 @@
         props.reset();
         dialog.value = false;
     };
+
+    const setInitialDate = (value: Date | null) => {
+      initialDate.value = value;
+      props.setInitialDate(value);
+    }
+
+    const setEndDate = (value: Date | null) => {
+      console.log(value);
+      endDate.value = value;
+      props.setEndDate(value);
+    }
 
     const downloadPdf = async () => {
 

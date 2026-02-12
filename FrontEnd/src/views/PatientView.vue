@@ -41,7 +41,7 @@
                     <v-text-field
                         v-model="formData.Identification"
                         label="Cédula (Sin guiones)"
-                        :rules="[...requiredRule, ...numberRule, ...maxLengthRule(indentificationCounter)]"
+                        :rules="[...requiredRule, ...numberRule, ...maxLengthRule(indentificationCounter), ...identificacionRule]"
                         @input="(e: InputEvent) => filterNumbers(e, 'Identification')"
                         :counter="indentificationCounter"
                     />
@@ -79,7 +79,7 @@
     import { AxiosError } from 'axios';
     import { onMounted, ref } from 'vue';
     import { VForm } from 'vuetify/components';
-    import { requiredRule, numberRule, maxLengthRule } from '@/utils/Validations';
+    import { requiredRule, numberRule, maxLengthRule, identificacionRule } from '@/utils/Validations';
     import { PatientType } from '@/enum/patientType';
     import { parsePatientType } from '@/utils/parsePatientType';
 

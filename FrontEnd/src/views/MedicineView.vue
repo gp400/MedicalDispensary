@@ -66,8 +66,10 @@
                     <v-text-field
                         v-model="formData.Dose"
                         label="Dosis"
-                        :rules="requiredRule"
+                        :rules="[ ...requiredRule, ...nonNegativeRule ]"
                         type="number"
+                        min="0"
+                        @keydown="preventNegative"
                     />
                 </v-col>
             </v-row>
@@ -90,7 +92,7 @@
   import { DrugType } from '@/dto/DrugType';
   import { Location } from '@/dto/Location';
   import { Medicine } from '@/dto/Medicine';
-  import { requiredRule } from '@/utils/Validations';
+  import { requiredRule, nonNegativeRule } from '@/utils/Validations';
   import { AxiosError } from 'axios';
   import { onMounted, ref } from 'vue';
   import { VForm } from 'vuetify/components';
@@ -172,4 +174,10 @@
       formRef.value!.reset();
       formData.value = new Medicine();
   }
+
+  const preventNegative = (event: KeyboardEvent) => {
+  if (event.key === '-') {
+    event.preventDefault();
+  }
+};
 </script>
